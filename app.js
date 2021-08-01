@@ -3,7 +3,6 @@ require('dotenv').config()
 const path = require('path')
 const http = require('http')
 const express = require('express')
-const engine = require('express-engine-jsx');
 const bodyParser = require('body-parser')
 const errorHandler = require('errorhandler')
 const methodOverride = require('method-override')
@@ -65,9 +64,9 @@ app.use((req, res, next) =>
   next()
 })
 
-app.set('views', path.join(__dirname, 'src/views'))
+app.set('views', __dirname + '/src/views')
 app.set('view engine', 'jsx')
-app.engine('jsx', engine)
+app.engine('jsx', require('express-react-views').createEngine())
 
 const handleRequest = async api =>
 {
@@ -93,11 +92,11 @@ app.get('/', async (req, res) =>
     }
   )
 
-  res.render('pages/home',
+  res.render('home',
   {
     ...defaults,
     home,
-    collections,
+    collections
   })
 })
 
@@ -107,7 +106,7 @@ app.get('/about', async (req, res) =>
   const defaults = await handleRequest(api)
   const about = await api.getSingle('about')
 
-  res.render('pages/about',
+  res.render('About',
   {
     ...defaults,
     about
@@ -123,7 +122,7 @@ app.get('/collections', async (req, res) =>
     { fetchLinks: ['product.image', 'product.title', 'product.description'] }
   )
 
-  res.render('pages/collections',
+  res.render('Collections',
   {
     ...defaults,
     home,
@@ -142,7 +141,7 @@ app.get('/collections/:uid', async (req, res) =>
     { fetchLinks: 'collection.title' }
   )
 
-  res.render('pages/product',
+  res.render('Product',
   {
     ...defaults,
     project

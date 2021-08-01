@@ -73,6 +73,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-relay": "^1.8.2",
     "eslint-plugin-standard": "^5.0.0",
+    "express-react-views": "^0.11.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^6.2.0",
     "glob": "^7.1.7",

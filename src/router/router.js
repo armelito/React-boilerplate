@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import About from '../views/About'
-import Home from '../views/Home'
+import Home from '../views/home.jsx'
 import Collections from '../views/Collections'
 import NotFound from '../views/NotFound'
 
